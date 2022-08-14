@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js' integrity='sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g==' crossorigin='anonymous'></script>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <title>Cooperider Upload GPX System</title>
+</head>
+
+<body class="grey lighten-3">
+
+    <!-- NAVBAR -->
+    <nav class="z-depth-0 grey lighten-4">
+        <div class=" container">
+            <ul id="nav-mobile" class="">
+                <li class="logged-in" style="display: none;">
+                    <a href="#" class="grey-text modal-trigger" data-target="modal-account">Account</a>
+                </li>
+                <li class="logged-in" style="display: none;">
+                    <a href="#" class="grey-text" id="logout">Logout</a>
+                </li>
+                <li class="editor admin" style="display: none;">
+                    <a href="#" class="grey-text modal-trigger" data-target="modal-create">Upload GPX File</a>
+                </li>
+                <li class="logged-out" style="display: none;">
+                    <a href="#" class="grey-text modal-trigger" data-target="modal-login">Login</a>
+                </li>
+                <li class="admin" style="display: none;">
+                    <a href="#" class="grey-text modal-trigger" data-target="modal-signup">Create user</a>
+                </li>
+                </span>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ADMIN ACTIONS -->
+    <form class="center-align admin-actions admin" style="margin: 40px auto; max-width: 300px; display: none;">
+        <input type="email" placeholder="User email" id="admin-email" required />
+        <select class="admin" name="role" id="role">
+            <option value="admin">Admin</option>
+            <option value="editor">Editor</option>
+        </select>
+        <button class="btn-small yellow darken-2 z-depth-0">Add Role</button>
+    </form>
+
+    <!-- SIGN UP MODAL -->
+    <div id="modal-signup" class="modal">
+        <div class="modal-content">
+            <h4>Sign up</h4><br />
+            <form id="signup-form">
+                <div class="input-field">
+                    <input type="email" id="signup-email" required />
+                    <label for="signup-email">Email address</label>
+                </div>
+                <div class="input-field">
+                    <input type="password" id="signup-password" required />
+                    <label for="signup-password">Choose password</label>
+                </div>
+                <div class="input-field">
+                    <input type="text" id="signup-desc" required />
+                    <label for="signup-desc">Description</label>
+                </div>
+                <button class="btn yellow darken-2 z-depth-0">Create user</button>
+                <p class="error pink-text center-align"></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- LOGIN MODAL -->
+    <div id="modal-login" class="modal">
+        <div class="modal-content">
+            <h4>Login</h4><br />
+            <form id="login-form">
+                <div class="input-field">
+                    <input type="email" id="login-email" required />
+                    <label for="login-email">Email address</label>
+                </div>
+                <div class="input-field">
+                    <input type="password" id="login-password" required />
+                    <label for="login-password">Password</label>
+                </div>
+                <button class="btn yellow darken-2 z-depth-0">Login</button>
+                <p class="error pink-text center-align"></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- ACCOUNT MODAL -->
+    <div id="modal-account" class="modal">
+        <div class="modal-content center-align">
+            <h4>Account details</h4><br />
+            <div class="account-details"></div>
+        </div>
+    </div>
+
+    <!-- UPLOAD GPX FILE MODAL -->
+    <div id="modal-create" class="modal">
+        <div class="modal-content">
+            <h4>Upload GPX Track</h4><br />
+            <form id="create-form" enctype="multipart/form-data" action="./scripts/upload.php" method="POST">
+                <div class="center-align pink-text">Don't forget to rename your file like :<br /> Connected_xxxxxxxx_xxxxxx_.gpx
+                </div>
+                <div class="input-field">
+                    <input type="file" name="gpx" id="gpx" required/>
+                </div>
+                <button class="btn yellow darken-2 z-depth-0">Upload</button>
+                <p class="error pink-text center-align"></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- GPX LIST  -->
+    <div class="container" style="margin-top: 40px;">
+        <ul class="collapsible z-depth-0 gpx" style="border: none;">
+        </ul>
+    </div>
+
+
+
+    <script type="module" src="scripts/initializeFirebase.js"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script type="module" src="scripts/auth.js"></script>
+    <script type="module" src="scripts/index.js"></script>
+</body>
+
+</html>
